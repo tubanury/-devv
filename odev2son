@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+int main()
+{
+     
+ int tek[8];
+ int cift[8];
+ int kartsayisi=0;
+ int toplam1=0;
+ int toplam2=0; //çöp deger atamamasi icin.
+ int toplam3=0;
+ int toplam4=0;
+ int a=0;
+      FILE *dosya=fopen("krediKartVeri.txt","r");
+      FILE *cikti=fopen("GecerlilikRaporu.txt", "w"); //cikti yazilacak dosya
+      if(dosya==NULL)
+       {
+     printf("Dosya bulunamadi.");
+     return 0; 
+       }
+     fscanf(dosya, "%d", &kartsayisi);
+
+ 
+ 
+ int i;
+
+ for (int j=0; j<kartsayisi; j++){  //kartsayisi kadar hesaplama yapacak for döngüsü
+
+   toplam1=0; toplam2=0; //her kartın hesaplamasına baslamadan degeri sifirlayacak
+   for(i=0;i<8;i++){
+    
+    fscanf(dosya,"%1d", &tek[i]);
+     fscanf(dosya,"%1d", &cift[i]);
+
+                 }
+
+    for(i=0;i<8;i++)
+    {
+    	toplam1=toplam1+cift[i];
+	}
+
+	
+  	
+  	for(i=0;i<8;i++)
+	  {
+  		int x= 2*tek[i];
+		  if(x>9)
+  		{
+  			toplam2=toplam2+(x%10+x/10);
+		  }
+  		  else
+		  toplam2= toplam2 + x;
+         }
+		 printf("%d nolu kredi karti toplam degeri:%d\n", j, toplam2+toplam1);
+		 
+	if((toplam1+toplam2)%10==0)
+	{
+
+		fprintf(cikti,"%d. Kart Gecerli\n", j);
+	}
+  	     
+        else if((toplam1+toplam2)%10!=0)
+	{
+		   
+
+  	   fprintf(cikti, "%d. Kart Gecersiz\n", j);
+  	       
+	}
+
+
+}
+			 
+			 
+  	   
+				               
+
+
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ }
